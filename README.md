@@ -1,0 +1,2 @@
+# what is VOR ?
+VOR { } is a software framework, developed by PHP , Programmer and also non-programmer could develop an enterprise type software using vor{ } . It supports plugins to extend its capability/features. This same platform supports languages like, C/C++ , Python , Ruby , PHP to develop plugin or a new software . It has many user friendly powerful functions that will help a developer to develop a software within a very few minutes . VOR { } is a cross platform and highly customizable , user and developer friendly software framework.
