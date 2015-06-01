@@ -1,5 +1,15 @@
 <?php
 	$rows = db_get_where('vor_admin', array('username' => $_SESSION['username']));
+
+	$plug_path = plugin_path('school_management_vor');
+
+	$img_path = $plug_path.'images/scl_students/'.$rows[0]['image'];
+	
+	if(empty($rows[0]['image'])) {
+	  $image = $plug_path.'images/default_image.jpg';
+	} else {
+	  $image = (file_exists($img_path)) ? $img_path : $plug_path.'images/default_image.jpg';
+	}
 ?>
 
 <div class="row">
@@ -7,7 +17,7 @@
 		<section class="panel">
 			<div class="user-heading round">
 				<a href="#">
-					<img src="<?php if(file_exists('img/admin/avatar.jpg')) { echo 'img/admin/avatar.jpg'; } else { echo 'https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg'; } ?>" alt="">
+					<img src="<?php echo $image; ?>" alt="">
 				</a>
 				<h1><?php echo $rows[0]['full_name']; ?></h1>
 				<p><?php echo $rows[0]['email']; ?></p>
