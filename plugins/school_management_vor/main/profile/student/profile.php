@@ -10,7 +10,7 @@
     <section class="panel">
       <div class="user-heading round">
         <a href="#">
-          <img src="<?php if(file_exists('img/admin/avatar.jpg')) { echo 'img/admin/avatar.jpg'; } else { echo 'https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg'; } ?>" alt="">
+          <img src="<?php if(file_exists('img/admin/avatar.jpg')) { echo 'img/admin/admin.png'; } else { echo 'https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg'; } ?>" alt="">
         </a>
         <h1><?php echo $rows[0]['name']; ?></h1>
         <p><?php echo $rows[0]['email']; ?></p>
