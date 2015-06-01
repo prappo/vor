@@ -1,0 +1,75 @@
+th {
+	text-align: center;
+}
+
+.value {
+	color: #C7CBD7;
+}
+
+.clsDatePicker {
+    z-index: 100000;
+}
+
+.principal_panel{
+	background-color: #F56954;
+	color: #dddddd;
+}
+
+.teachers_panel {
+	background-color: #00A65A;
+	color: #dddddd;
+}
+
+.students_panel {
+	background-color: #0073B7;
+	color: #dddddd;
+}
+
+.notices_panel {
+	background-color: #00C0EF;
+	color: #dddddd;
+}
+
+.panel-footer {
+	background-color: #9DA7B1;
+	color: #244265;
+	font-weight: 700;
+	font-size: 12px;
+	transition: all .3s;
+}
+
+.panel-footer:hover {
+	background-color: #D3D3D3;
+	color: #244265;
+}
+
+.profile_image {
+	padding-bottom: 20px;
+}
+.profile_name {
+	padding-top: 80px;
+}
+
+.add-new {
+	color: #dddddd;
+	background-color: #2A3542;
+	margin-top:-5px;
+	margin-right: 15px;
+	transition: all .3s;
+}
+
+.add-new:hover {
+	color: white;
+}
+.add-new-full {
+	color: #dddddd;
+	background-color: #2A3542;
+}
+
+.add-new-full:hover {
+	color: white;
+}
+
+.add-routine {
+	margin-top: 2px;
+}
