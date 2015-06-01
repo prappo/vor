@@ -42,6 +42,7 @@ if(!isset($_SESSION["username"])) {
 			foreach($css_files as $css_file) {
 				echo '<link rel="stylesheet" type="text/css" href="'.$css_file.'">';
 			}
+
 			foreach($css_files1 as $css_file1) {
 				echo '<link rel="stylesheet" type="text/css" href="'.$css_file1.'">';
 			}
@@ -97,8 +98,8 @@ if(!isset($_SESSION["username"])) {
 									$sql = mysql_query("SELECT * FROM vor_admin WHERE `username` = '{$username}'");
 									$result = mysql_fetch_assoc($sql);
 									
-									$user_image  = 'img/admin/'.$result['image'];
 									$default_img = 'img/admin/admin.png';
+									$user_image  = (empty($result['image'])) ? $default_img : 'img/admin/'.$result['image']; ;
 								?>
 								<img alt="" src="<?php if(file_exists($user_image)) { echo $user_image; } else { echo $default_img; } ?>" height="29" width="29">
 								<span class="username">
