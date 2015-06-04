@@ -104,6 +104,26 @@ if($type == 'admin')
 $count = 0;
  	$plugin_dir = "./plugins/";
  	$plugin_list = glob($plugin_dir."*_vor/vor.json");
+
+  $total_plugins = count($plugin_list);
+
+  ?>
+
+  <div class="row state-overview">
+    <div class="col-lg-3 col-sm-6">
+      <section class="panel">
+        <div class="symbol blue">
+          <i class="fa fa-puzzle-piece"></i>
+        </div>
+        <div class="value">
+          <h1 class="count"><?php echo $total_plugins; ?></h1>
+          <p><?php echo ($total_plugins > 1) ? 'plugins' : 'plugin' ; ?> found</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+<?php
  	foreach($plugin_list as $all_plugin)
  	{
  		
@@ -176,14 +196,8 @@ $count = 0;
                       </section>
 
 
-<?php		
-
-		$count++;
-   
-
+<?php
   }
- 	echo "<h3>Total <h1><span>$count</span></h1> plugins found</h3>";
-  
 
   if(isset($_POST['deactive']))
   {
@@ -224,6 +238,26 @@ if($type == 'admin')
 $count = 0;
   $plugin_dir = "./plugins/";
   $plugin_list = glob($plugin_dir."*/vor.json");
+
+  $total_plugins = count($plugin_list);
+
+  ?>
+
+    <div class="row state-overview">
+      <div class="col-lg-3 col-sm-6">
+        <section class="panel">
+          <div class="symbol blue">
+            <i class="fa fa-puzzle-piece"></i>
+          </div>
+          <div class="value">
+            <h1 class="count"><?php echo $total_plugins; ?></h1>
+            <p><?php echo ($total_plugins > 1) ? 'plugins' : 'plugin' ; ?> found</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  <?php
   foreach($plugin_list as $all_plugin)
   {
     
@@ -234,10 +268,10 @@ $count = 0;
    $script_path = str_replace('index.php','',$path);
    
    $plug_link = str_replace('vor.json', '',$all_plugin);
-   $old_path = $script_path. str_replace("./","",$plug_link);
+   $old_path  = $script_path. str_replace("./","",$plug_link);
    
-   $ex_path = substr($old_path,0,-1);
-   $new_path =$ex_path."_vor/";
+   $ex_path   = substr($old_path,0,-1);
+   $new_path  = $ex_path."_vor/";
    
 
 
@@ -300,13 +334,7 @@ $count = 0;
 
 <?php   
 
-    $count++;
-   
-
   }
-  echo "<h3>Total <h1><span>$count</span></h1> plugins found</h3>";
-  
-
   if(isset($_POST['active']))
   {
     $html_old = $_POST['old'];
