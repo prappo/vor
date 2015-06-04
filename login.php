@@ -8,8 +8,8 @@ include('lib/function.php');
  
 if(isset($_POST['submit'])) {
     
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = sanitize($_POST['username']);
+    $password = sanitize($_POST['password']);
     $remember = (isset($_POST['remember'])) ? true : false ;
 
     if(empty($username) || empty($password)) {
@@ -103,7 +103,6 @@ if(isset($_POST['submit'])) {
 									<div class="form-group">
 										<input id="password" class="form-control black" placeholder="Password" type="password" name="password">
 									</div>
-									
 									<div>
 										<input type="submit" name="submit" value="Login" id="login" class="btn btn-lg btn-success btn-block" id="submit">
 									</div>
