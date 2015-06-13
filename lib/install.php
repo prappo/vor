@@ -8,6 +8,7 @@ header('Location:../login.php');
 }
 else
 {
+	include 'function.php'
 ?>
 
 <!DOCTYPE html>
@@ -66,10 +67,10 @@ function timeRefresh(timeoutPeriod)
     if(isset($_POST['install']))
     {	
 
-      $host = $_POST['host'];
-      $user = $_POST['user'];
-      $pass = $_POST['pass'];
-      $db_name = $_POST['db_name'];
+      $host 	= sanitize($_POST['host']);
+      $user 	= sanitize($_POST['user']);
+      $pass 	= sanitize($_POST['pass']);
+      $db_name 	= sanitize($_POST['db_name']);
 
     	if($host=='')
     	{
@@ -85,10 +86,9 @@ function timeRefresh(timeoutPeriod)
     	else
     	{
     	
-      try {
-          $pdo = new PDO('mysql:host='.$host.';dbname='.$db_name.'', $user, $pass);
-          $query = "CREATE TABLE IF NOT EXISTS `vor_admin` (
-              `id` int(11) NOT NULL,
+			$con = mysql_connect($host, $user, $pass);
+          	$query = "CREATE TABLE IF NOT EXISTS `vor_admin` (
+				`id` int(11) NOT NULL,
                 `full_name` varchar(30) NOT NULL,
                 `username` varchar(30) NOT NULL,
                 `password` varchar(200) NOT NULL,
@@ -130,12 +130,7 @@ function timeRefresh(timeoutPeriod)
               ALTER TABLE `vor_settings`
                ADD PRIMARY KEY (`id`);";
 
-          $pdo->query($query);
-      } catch (PDOException $e) {
-          $e->getMessage();
-      }
-
-    if($pdo) {
+    if($con) {
     		$config = "<?php
   (!defined('HOST')) ? define('HOST', '".$host."') : NULL;
   (!defined('USER')) ? define('USER', '".$user."') : NULL;

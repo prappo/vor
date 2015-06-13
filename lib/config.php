@@ -1,7 +1,6 @@
-
 <?php
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DB', 'vor');
+  (!defined('HOST')) ? define('HOST', 'localhost') : NULL;
+  (!defined('USER')) ? define('USER', 'root') : NULL;
+  (!defined('PASS')) ? define('PASS', '') : NULL;
+  (!defined('DB')) ? define('DB', 'vor') : NULL;
 ?>
