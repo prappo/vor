@@ -67,10 +67,10 @@ function timeRefresh(timeoutPeriod)
     if(isset($_POST['install']))
     {	
 
-      $host 	= sanitize($_POST['host']);
-      $user 	= sanitize($_POST['user']);
-      $pass 	= sanitize($_POST['pass']);
-      $db_name 	= sanitize($_POST['db_name']);
+      $host 	= $_POST['host'];
+      $user 	= $_POST['user'];
+      $pass 	= $_POST['pass'];
+      $db_name 	= $_POST['db_name'];
 
     	if($host=='')
     	{
@@ -87,71 +87,77 @@ function timeRefresh(timeoutPeriod)
     	{
 			$con = mysql_connect($host, $user, $pass) or die(mysql_error());
 
+			mysql_select_db($db_name) or die(mysql_error());
+
 			if($con) {
-				$query = "CREATE TABLE IF NOT EXISTS `vor_admin` (
-				`id` int(11) NOT NULL,
-                `full_name` varchar(30) NOT NULL,
-                `username` varchar(30) NOT NULL,
-                `password` varchar(200) NOT NULL,
-                `type` varchar(10) NOT NULL,
-                `email` varchar(30) NOT NULL,
-                `last_login` varchar(15) NOT NULL,
-                `registration_date` date NOT NULL,
-                `image` varchar(1000) NOT NULL
-              ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+				$query[] = "CREATE TABLE IF NOT EXISTS `vor_admin` (
+					`id` int(11) NOT NULL,
+                	`full_name` varchar(30) NOT NULL,
+                	`username` varchar(30) NOT NULL,
+                	`password` varchar(200) NOT NULL,
+                	`type` varchar(10) NOT NULL,
+                	`email` varchar(30) NOT NULL,
+                	`last_login` varchar(15) NOT NULL,
+                	`registration_date` date NOT NULL,
+                	`image` varchar(1000) NOT NULL
+              	) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;";
 
-              INSERT INTO `vor_admin` (`id`, `full_name`, `username`, `password`, `type`, `email`, `last_login`, `registration_date`, `image`) VALUES
-              (1, 'Admin', 'admin', 'admin', 'admin', 'admin@mail.com', '', CURRENT_TIMESTAMP, 'admin_1.jpg');
+				$query[] = "CREATE TABLE IF NOT EXISTS `vor_notify` (
+              		`id` int(50) NOT NULL,
+                	`class` varchar(20) NOT NULL,
+                	`content` varchar(50) NOT NULL,
+                	`time` varchar(50) NOT NULL,
+                	`status` varchar(10) NOT NULL
+              	) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;";
 
-              CREATE TABLE IF NOT EXISTS `vor_notify` (
-              `id` int(50) NOT NULL,
-                `class` varchar(20) NOT NULL,
-                `content` varchar(50) NOT NULL,
-                `time` varchar(50) NOT NULL,
-                `status` varchar(10) NOT NULL
-              ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+				$query[] = "CREATE TABLE IF NOT EXISTS `vor_settings` (
+                	`id` int(12) NOT NULL,
+                	`notify` varchar(10) NOT NULL,
+                	`home` varchar(255) NOT NULL,
+                	`header` varchar(20) NOT NULL,
+                	`foot` varchar(100) NOT NULL
+              	) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
-              CREATE TABLE IF NOT EXISTS `vor_settings` (
-                `id` int(12) NOT NULL,
-                `notify` varchar(10) NOT NULL,
-                `home` varchar(255) NOT NULL,
-                `header` varchar(20) NOT NULL,
-                `foot` varchar(100) NOT NULL
-              ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+				$query[] = "INSERT INTO `vor_admin` (`id`, `full_name`, `username`, `password`, `type`, `email`, `last_login`, `registration_date`, `image`) VALUES 
+					(1, 'Admin', 'admin', 'admin', 'admin', 'admin@mail.com', '', CURRENT_TIMESTAMP, 'admin_1.jpg');";
 
-              INSERT INTO `vor_settings` (`id`, `notify`, `home`, `header`, `foot`) VALUES
-              (1, 'on', '', 'My <span> Softwre ', '');
+				$query[] = "INSERT INTO `vor_settings` (`id`, `notify`, `home`, `header`, `foot`) VALUES 
+					(1, 'on', '', 'My <span> Softwre ', '');";
 
-              ALTER TABLE `vor_admin`
-               ADD PRIMARY KEY (`id`);
+				$query[] = "ALTER TABLE `vor_admin`
+	               ADD PRIMARY KEY (`id`);";
 
-              ALTER TABLE `vor_notify`
-               ADD PRIMARY KEY (`id`);
+				$query[] = "ALTER TABLE `vor_notify`
+	               ADD PRIMARY KEY (`id`);";
 
-              ALTER TABLE `vor_settings`
-               ADD PRIMARY KEY (`id`);";
+				$query[] = "ALTER TABLE `vor_settings`
+	               ADD PRIMARY KEY (`id`);";
 
-    		$config = "<?php
+
+				
+				foreach($query as $q) {
+					mysql_query($q) or die(mysql_error());
+				}
+
+				$config = "<?php
   (!defined('HOST')) ? define('HOST', '".$host."') : NULL;
   (!defined('USER')) ? define('USER', '".$user."') : NULL;
   (!defined('PASS')) ? define('PASS', '".$pass."') : NULL;
   (!defined('DB')) ? define('DB', '".$db_name."') : NULL;
 ?>";
 
-			mysql_query($query);
+				$myfile = fopen("config.php", "w") or die("<div class='alert alert-block alert-danger fade in'>but unable to create config file .Permission forbidden <br>Please make config.php file with following code in lib folder</div> <br> <textarea class='form-control' rows='7'>$config</textarea>");
 
-			$myfile = fopen("config.php", "w") or die("<div class='alert alert-block alert-danger fade in'>but unable to create config file .Permission forbidden <br>Please make config.php file with following code in lib folder</div> <br> <textarea class='form-control' rows='7'>$config</textarea>");
+				$action = fwrite($myfile, $config);
 
-			$action = fwrite($myfile, $config);
-
-			if($action) {
-			  echo "<div><script>installed(); timeRefresh(1500)</script></div>";
-			}
+				if($action) {
+			  		echo "<div><script>installed(); timeRefresh(1500)</script></div>";
+				}
 			}
 		}
 	}
 
-        ?>
+?>
        
       </form>
  
