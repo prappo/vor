@@ -85,9 +85,10 @@ function timeRefresh(timeoutPeriod)
     	}
     	else
     	{
-    	
-			$con = mysql_connect($host, $user, $pass);
-          	$query = "CREATE TABLE IF NOT EXISTS `vor_admin` (
+			$con = mysql_connect($host, $user, $pass) or die(mysql_error());
+
+			if($con) {
+				$query = "CREATE TABLE IF NOT EXISTS `vor_admin` (
 				`id` int(11) NOT NULL,
                 `full_name` varchar(30) NOT NULL,
                 `username` varchar(30) NOT NULL,
@@ -130,7 +131,6 @@ function timeRefresh(timeoutPeriod)
               ALTER TABLE `vor_settings`
                ADD PRIMARY KEY (`id`);";
 
-    if($con) {
     		$config = "<?php
   (!defined('HOST')) ? define('HOST', '".$host."') : NULL;
   (!defined('USER')) ? define('USER', '".$user."') : NULL;
@@ -138,16 +138,18 @@ function timeRefresh(timeoutPeriod)
   (!defined('DB')) ? define('DB', '".$db_name."') : NULL;
 ?>";
 
-$myfile = fopen("config.php", "w") or die("<div class='alert alert-block alert-danger fade in'>but unable to create config file .Permission forbidden <br>Please make config.php file with following code in lib folder</div> <br> <textarea class='form-control' rows='7'>$config</textarea>");
+			mysql_query($query);
 
-$action = fwrite($myfile, $config);
-if($action)
-{
-  echo "<div><script>installed(); timeRefresh(1500)</script></div>";
-}
-    	}
-    }
-    }
+			$myfile = fopen("config.php", "w") or die("<div class='alert alert-block alert-danger fade in'>but unable to create config file .Permission forbidden <br>Please make config.php file with following code in lib folder</div> <br> <textarea class='form-control' rows='7'>$config</textarea>");
+
+			$action = fwrite($myfile, $config);
+
+			if($action) {
+			  echo "<div><script>installed(); timeRefresh(1500)</script></div>";
+			}
+			}
+		}
+	}
 
         ?>
        
