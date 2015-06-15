@@ -31,7 +31,7 @@ if(isset($_POST['submit'])) {
                 $ip = $_SERVER['REMOTE_ADDR'];
                 $pdo->query("UPDATE vor_admin SET last_login = '{$ip}'");
                 
-                $pdo->query("INSERT INTO vor_notify(class, content, time, status)VALUES('info', '$content', '$date', 'unread')");
+                $pdo->query("INSERT INTO vor_notify(class, content, time, status) VALUES('info', '$content', '$date', 'unread')");
                 echo "<meta http-equiv='refresh' content='2;url=index.php'>";
             } else {
                 $notFound = true;

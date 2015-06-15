@@ -91,7 +91,7 @@ function timeRefresh(timeoutPeriod)
 
 			if($con) {
 				$query[] = "CREATE TABLE IF NOT EXISTS `vor_admin` (
-					`id` int(11) NOT NULL,
+					        `id` int(11) NOT NULL,
                 	`full_name` varchar(30) NOT NULL,
                 	`username` varchar(30) NOT NULL,
                 	`password` varchar(200) NOT NULL,
@@ -100,40 +100,47 @@ function timeRefresh(timeoutPeriod)
                 	`last_login` varchar(15) NOT NULL,
                 	`registration_date` date NOT NULL,
                 	`image` varchar(1000) NOT NULL
-              	) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;";
+              	) ENGINE=InnoDB  DEFAULT CHARSET=latin1;";
 
 				$query[] = "CREATE TABLE IF NOT EXISTS `vor_notify` (
-              		`id` int(50) NOT NULL,
-                	`class` varchar(20) NOT NULL,
-                	`content` varchar(50) NOT NULL,
-                	`time` varchar(50) NOT NULL,
-                	`status` varchar(10) NOT NULL
-              	) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;";
+                  `id` int(11) NOT NULL,
+                  `class` varchar(20) NOT NULL,
+                  `content` varchar(50) NOT NULL,
+                  `time` varchar(50) NOT NULL,
+                  `status` varchar(10) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
 
 				$query[] = "CREATE TABLE IF NOT EXISTS `vor_settings` (
-                	`id` int(12) NOT NULL,
-                	`notify` varchar(10) NOT NULL,
-                	`home` varchar(255) NOT NULL,
-                	`header` varchar(20) NOT NULL,
-                	`foot` varchar(100) NOT NULL
-              	) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-
-				$query[] = "INSERT INTO `vor_admin` (`id`, `full_name`, `username`, `password`, `type`, `email`, `last_login`, `registration_date`, `image`) VALUES 
-					(1, 'Admin', 'admin', 'admin', 'admin', 'admin@mail.com', '', CURRENT_TIMESTAMP, 'admin_1.jpg');";
-
-				$query[] = "INSERT INTO `vor_settings` (`id`, `notify`, `home`, `header`, `foot`) VALUES 
-					(1, 'on', '', 'My <span> Softwre ', '');";
+                  `id` int(11) NOT NULL,
+                  `notify` varchar(10) NOT NULL,
+                  `home` varchar(255) NOT NULL,
+                  `header` varchar(20) NOT NULL,
+                  `foot` varchar(100) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
 
 				$query[] = "ALTER TABLE `vor_admin`
 	               ADD PRIMARY KEY (`id`);";
 
 				$query[] = "ALTER TABLE `vor_notify`
-	               ADD PRIMARY KEY (`id`);";
+                 ADD PRIMARY KEY (`id`);";
 
 				$query[] = "ALTER TABLE `vor_settings`
 	               ADD PRIMARY KEY (`id`);";
 
+        $query[] = "ALTER TABLE `vor_admin`
+                 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
 
+        $query[] = "ALTER TABLE `vor_notify`
+                 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
+
+        $query[] = "ALTER TABLE `vor_settings`
+                 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
+
+        $query[] = "INSERT INTO `vor_admin` (`full_name`, `username`, `password`, `type`, `email`, `last_login`, `registration_date`, `image`) VALUES 
+          ('Admin', 'admin', 'admin', 'admin', 'admin@mail.com', '', CURRENT_TIMESTAMP, 'admin_1.jpg');";
+
+        $query[] = "INSERT INTO `vor_settings` (`notify`, `home`, `header`, `foot`) VALUES 
+          ('on', '', 'My <span> Softwre ', '');";
 				
 				foreach($query as $q) {
 					mysql_query($q) or die(mysql_error());
