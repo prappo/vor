@@ -333,7 +333,7 @@ $count = 0;
 
 
 <?php   
-
+$count++;
   }
   if(isset($_POST['active']))
   {
