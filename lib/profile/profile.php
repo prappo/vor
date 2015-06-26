@@ -1,12 +1,18 @@
 <?php
   $rows = db_get_where('vor_admin', array('username' => $_SESSION['username']));
+  $image = $rows[0]['image'];
+  $image = 'img/admin/'.$image;
+
+  if(!file_exists($image) || empty($rows[0]['image'])) {
+    $image = 'img/admin/admin.png';
+  }
 ?>
 <div class="row">
   <aside class="profile-nav col-lg-3">
     <section class="panel">
       <div class="user-heading round">
         <a href="#">
-          <img src="<?php if(file_exists('img/admin/avatar.jpg')) { echo 'img/admin/avatar.jpg'; } else { echo 'https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg'; } ?>" alt="">
+          <img src="<?php echo $image; ?>" alt="">
         </a>
         <h1><?php echo $rows[0]['full_name']; ?></h1>
         <p><?php echo $rows[0]['email']; ?></p>
@@ -26,28 +32,22 @@
           <div class="panel-body bio-graph-info">
             <div class="row">
               <div class="bio-row">
-                <p><span>First Name </span>: Jonathan</p>
+                <p><span>Username </span>: <?php echo  $rows[0]['username']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Last Name </span>: Smith</p>
+                <p><span>Name </span>: <?php echo  $rows[0]['full_name']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Country </span>: Australia</p>
+                <p><span>User Type </span>: <?php echo  $rows[0]['type']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Birthday</span>: 13 July 1983</p>
+                <p><span>Email</span>: <?php echo  $rows[0]['email']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Occupation </span>: UI Designer</p>
+                <p><span>Last login IP </span>: <?php echo  $rows[0]['last_login']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Email </span>: jsmith@flatlab.com</p>
-              </div>
-              <div class="bio-row">
-                <p><span>Mobile </span>: (12) 03 4567890</p>
-              </div>
-              <div class="bio-row">
-                <p><span>Phone </span>: 88 (02) 123456</p>
+                <p><span>Registration Date </span>: <?php echo  $rows[0]['registration_date']?></p>
               </div>
             </div>
           </div>
