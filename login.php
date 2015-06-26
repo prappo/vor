@@ -70,15 +70,12 @@ if(isset($_POST['submit'])) {
     <link rel="shortcut icon" href="img/logo.png">
     <!-- javascript -->
     <script src="js/jquery.js"></script>
-    <script src="http://bditsoft.com/tutorials/Form_Validation/JQuery_Form_Validation/js/jquery.validationEngine-en.js"></script>
-    <script src="http://bditsoft.com/tutorials/Form_Validation/JQuery_Form_Validation/js/jquery.validationEngine.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.ui.shake.js"></script>
     <script src="assets/lib/sweet-alert.min.js"></script> 
     <script type="text/javascript">        
         function success(){
             swal({   title: "Login Success!",   text: "redirecting....",   type: "success",   confirmButtonText: "OK" , timer: 1500 });
-
         }
    </script>
 
