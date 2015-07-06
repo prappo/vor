@@ -49,7 +49,7 @@
 							<form role="form" method="post" action="checklogin.php" id="form">
 								<fieldset>
 									<div class="form-group">
-										<input id="username" class="form-control black" placeholder="Username"  type="text" name="username" <?php if(isset($username)) echo "value='$username'"; ?> autofocus>
+										<input id="username" class="form-control black" placeholder="Username"  type="text" name="username" autofocus>
 									</div>
 									<div class="form-group">
 										<input id="password" class="form-control black" placeholder="Password" type="password" name="password">
