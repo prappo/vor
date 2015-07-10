@@ -5494,3 +5494,7 @@ a.guest-on i {
     padding-top: 10px;
     text-align: center;
 }
+
+.login-message {
+    text-align: center;
+}
