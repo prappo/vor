@@ -303,8 +303,15 @@ function db_get($tbl_name, $limit = NULL, $offset = NULL) {
             }
             try{
                 $stmt = $pdo->prepare($query);
-                if($stmt->execute()) {
-                     return $stmt->fetchAll();
+                $stmt->execute();
+                $res = $stmt->fetchAll();
+                
+                if(count($res)== 1) {
+                    foreach($res as $rs) {
+                        return $rs;
+                    }
+                } else {
+                    return $res;
                 }
             } catch (PDOException $e) {
                 echo 'Error! Getting Data From <b>`'.$tbl_name.'`</b> '.$e->getMessage().'<br>';
@@ -361,8 +368,11 @@ function db_get_where($tbl_name, $where, $limit = NULL, $offset = NULL) {
                 try{
                     $stmt = $pdo->prepare($query);
                     $stmt->bindParam(1, $where_value, PDO::PARAM_STR);
-                    if($stmt->execute()) {
-                        return $stmt->fetchAll();
+                    $stmt->execute();
+                    $res = $stmt->fetchAll();
+                    
+                    foreach($res as $rs) {
+                        return $rs;    
                     }
                 } catch (PDOException $e) {
                     echo 'Error! Getting Data From <b>`'.$tbl_name.'`</b> '.$e->getMessage().'<br>';
