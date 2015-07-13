@@ -28,7 +28,7 @@ $(function() {
 
                     setTimeout(function() {
                         location.reload(true);
-                    }, 1600);
+                    }, 500);
                 } else if (data.message == 0) {
                     btn.button('reset');
                     errDiv.fadeToggle();
