@@ -74,6 +74,7 @@ function is_admin() {
 }
 
 function user_type() {
+    db_connect();
     global $pdo;
 
     $username = isset($_SESSION['username']) ? $_SESSION['username'] : NULL;
