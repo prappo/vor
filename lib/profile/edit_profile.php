@@ -25,12 +25,12 @@
   require_once 'lib/imageResize.php';
 
   $rows = db_get_where('vor_admin', array('username' => $_SESSION['username']));
-  $image = $rows[0]['image'];
+  $image = $rows['image'];
 
   $image    = 'img/admin/'.$image;
-  $real_img = 'img/admin/'.$rows[0]['image'];
+  $real_img = 'img/admin/'.$rows['image'];
 
-  if(!file_exists($image) || empty($rows[0]['image'])) {
+  if(!file_exists($image) || empty($rows['image'])) {
     $image = 'img/admin/admin.png';
   }
 
@@ -88,8 +88,8 @@
         <a href="#">
           <img src="<?php echo $image; ?>" alt="">
         </a>
-        <h1><?php echo $rows[0]['full_name']; ?></h1>
-        <p><?php echo $rows[0]['email']; ?></p>
+        <h1><?php echo $rows['full_name']; ?></h1>
+        <p><?php echo $rows['email']; ?></p>
       </div>
       <ul class="nav nav-pills nav-stacked">
         <li><a href="profile"> <i class="fa fa-user"></i> Profile</a></li>
@@ -108,13 +108,13 @@
               <div class="form-group">
                 <label class="col-lg-2 control-label">Name</label>
                 <div class="col-lg-6">
-                  <input type="text" class="form-control" id="name" placeholder="<?php echo $rows[0]['full_name']; ?>" value="<?php echo $rows[0]['full_name']; ?>" name="name">
+                  <input type="text" class="form-control" id="name" placeholder="<?php echo $rows['full_name']; ?>" value="<?php echo $rows['full_name']; ?>" name="name">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-lg-2 control-label">Email</label>
                 <div class="col-lg-6">
-                  <input type="text" class="form-control" id="email" placeholder="<?php echo $rows[0]['email']; ?>" value="<?php echo $rows[0]['email']; ?>" name="email">
+                  <input type="text" class="form-control" id="email" placeholder="<?php echo $rows['email']; ?>" value="<?php echo $rows['email']; ?>" name="email">
                 </div>
               </div>
               <div class="form-group">

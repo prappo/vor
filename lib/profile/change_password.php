@@ -33,11 +33,11 @@
 <?php
 	$rows = db_get_where('vor_admin', array('username' => $_SESSION['username']));
 
-	$image = $rows[0]['image'];
+	$image = $rows['image'];
 
 	$image = 'img/admin/'.$image;
 
-	if(!file_exists($image) || empty($rows[0]['image'])) {
+	if(!file_exists($image) || empty($rows['image'])) {
 	  $image = 'img/admin/admin.png';
 	}
 
@@ -81,8 +81,8 @@
 				<a href="#">
 					<img src="<?php echo $image; ?>" alt="">
 				</a>
-				<h1><?php echo $rows[0]['full_name']; ?></h1>
-				<p><?php echo $rows[0]['email']; ?></p>
+				<h1><?php echo $rows['full_name']; ?></h1>
+				<p><?php echo $rows['email']; ?></p>
 			</div>
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="profile"> <i class="fa fa-user"></i> Profile</a></li>

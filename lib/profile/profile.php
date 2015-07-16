@@ -1,9 +1,9 @@
 <?php
   $rows = db_get_where('vor_admin', array('username' => $_SESSION['username']));
-  $image = $rows[0]['image'];
+  $image = $rows['image'];
   $image = 'img/admin/'.$image;
 
-  if(!file_exists($image) || empty($rows[0]['image'])) {
+  if(!file_exists($image) || empty($rows['image'])) {
     $image = 'img/admin/admin.png';
   }
 ?>
@@ -14,8 +14,8 @@
         <a href="#">
           <img src="<?php echo $image; ?>" alt="">
         </a>
-        <h1><?php echo $rows[0]['full_name']; ?></h1>
-        <p><?php echo $rows[0]['email']; ?></p>
+        <h1><?php echo $rows['full_name']; ?></h1>
+        <p><?php echo $rows['email']; ?></p>
       </div>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="profile"> <i class="fa fa-user"></i> Profile</a></li>
@@ -32,22 +32,22 @@
           <div class="panel-body bio-graph-info">
             <div class="row">
               <div class="bio-row">
-                <p><span>Username </span>: <?php echo  $rows[0]['username']?></p>
+                <p><span>Username </span>: <?php echo  $rows['username']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Name </span>: <?php echo  $rows[0]['full_name']?></p>
+                <p><span>Name </span>: <?php echo  $rows['full_name']?></p>
               </div>
               <div class="bio-row">
-                <p><span>User Type </span>: <?php echo  $rows[0]['type']?></p>
+                <p><span>User Type </span>: <?php echo  $rows['type']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Email</span>: <?php echo  $rows[0]['email']?></p>
+                <p><span>Email</span>: <?php echo  $rows['email']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Last login IP </span>: <?php echo  $rows[0]['last_login']?></p>
+                <p><span>Last login IP </span>: <?php echo  $rows['last_login']?></p>
               </div>
               <div class="bio-row">
-                <p><span>Registration Date </span>: <?php echo  $rows[0]['registration_date']?></p>
+                <p><span>Registration Date </span>: <?php echo  $rows['registration_date']?></p>
               </div>
             </div>
           </div>
