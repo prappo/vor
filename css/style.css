@@ -2734,9 +2734,6 @@ ul.amounts li {
     border-bottom: none;
 }
 
-.dataTables_length , .dataTables_filter{
-    padding:15px;
-}
 .dataTables_info{
     padding:0 15px;
 }
