@@ -1,6 +1,7 @@
 
 <?php
 include('lib/auto_load.php');
+include('lib/function.php');
 session_start();
 
 
