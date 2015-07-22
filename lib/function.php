@@ -3,6 +3,7 @@ if(file_exists('lib/config.php')) {
  //require 'lib/config.php'; 
 }
 $pdo;
+$js_footer_files;
 
 function settings($val)
 {
@@ -538,5 +539,42 @@ function get_plugin_name() {
 
             return $matches[1];
         }
+    }
+}
+
+function add_css($css_files) {
+    if(is_array($css_files)) {
+        foreach($css_files as $css_file) {
+            echo '<link rel="stylesheet" type="text/css" href="'.$css_file.'">'."\n";
+        }
+    } else {
+        echo '<link rel="stylesheet" type="text/css" href="'.$css_files.'">';
+    }
+}
+
+function add_js_header($js_header_files) {
+    if(is_array($js_header_files)) {
+        foreach($js_header_files as $js_header_file) {
+            echo '<script type="text/javascript" src="'.$js_header_file.'"></script>'."\n";
+        }
+    } else {
+        echo '<script type="text/javascript" src="'.$js_header_files.'"></script>';
+    }
+}
+
+function add_js_footer($js_file) {
+    global $js_footer_files;
+    $js_footer_files = $js_file;
+}
+
+function set_js_footer() {
+    global $js_footer_files;
+
+    if(is_array($js_footer_files)) {
+        foreach($js_footer_files as $js_footer_file) {
+            echo '<script type="text/javascript" src="'.$js_footer_file.'"></script>'."\n";
+        }
+    } else {
+        echo '<script type="text/javascript" src="'.$js_footer_files.'"></script>';
     }
 }

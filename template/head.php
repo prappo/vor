@@ -34,37 +34,18 @@ if(!isset($_SESSION["username"])) {
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/style-responsive.css">
 		<link rel="stylesheet" type="text/css" href="assets/lib/sweet-alert.css">
-		<?php
-			$plugin_dir  = "./plugins/";
-			$css_files   = glob($plugin_dir."*/*.css");
-			$css_files1  = glob($plugin_dir."*/*/*.css");
-			
-			foreach($css_files as $css_file) {
-				echo '<link rel="stylesheet" type="text/css" href="'.$css_file.'">';
-			}
-
-			foreach($css_files1 as $css_file1) {
-				echo '<link rel="stylesheet" type="text/css" href="'.$css_file1.'">';
-			}
-
-			$plugin_dir = "./plugins/";
-			$js_files   = glob($plugin_dir."*/*.js");
-			$js_files1  = glob($plugin_dir."*/*/*.js");
-			
-			foreach($js_files as $js_file) {
-				echo '<script src="'.$js_file.'" type="text/javascript"></script>';
-			}
-			
-			foreach($js_files1 as $js_file1) {
-				echo '<script src="'.$js_file1.'" type="text/javascript"></script>';
-			}
-		?>
 		
 		<script src="js/jquery.js"></script>
 		<script src="assets/lib/sweet-alert.min.js"></script>
 		<script type="text/javascript">
 		function logout(){
-			swal({   title: "Logout Success!",   text: "redirecting....",   type: "success",   confirmButtonText: "OK" , timer: 1500 });
+			swal({
+				title: "Logout Success!",
+				text: "redirecting....",
+				type: "success",
+				confirmButtonText: "OK",
+				timer: 1500
+			});
 		}
 		</script>
 	</head>
