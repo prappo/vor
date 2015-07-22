@@ -527,3 +527,16 @@ function get_plugin_dir() {
         }
     }
 }
+
+function get_plugin_name() {
+    $backtrace = debug_backtrace();
+
+    foreach($backtrace as $trace) {
+        if($trace['function'] == 'get_plugin_name') {
+            $filePath = $trace['file'];
+            preg_match("/.*?plugins.(.*?)\\\\|\\//", $filePath, $matches);
+
+            return $matches[1];
+        }
+    }
+}
