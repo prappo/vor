@@ -304,15 +304,7 @@ function db_get($tbl_name, $limit = NULL, $offset = NULL) {
             try{
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
-                $res = $stmt->fetchAll();
-                
-                if(count($res)== 1) {
-                    foreach($res as $rs) {
-                        return $rs;
-                    }
-                } else {
-                    return $res;
-                }
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 echo 'Error! Getting Data From <b>`'.$tbl_name.'`</b> '.$e->getMessage().'<br>';
             }
