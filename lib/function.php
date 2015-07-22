@@ -361,10 +361,14 @@ function db_get_where($tbl_name, $where, $limit = NULL, $offset = NULL) {
                     $stmt = $pdo->prepare($query);
                     $stmt->bindParam(1, $where_value, PDO::PARAM_STR);
                     $stmt->execute();
-                    $res = $stmt->fetchAll();
+                    $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     
-                    foreach($res as $rs) {
-                        return $rs;    
+                    if(count($res) == 1) {
+                        foreach($res as $rs) {
+                            return $rs;
+                        }
+                    } else {
+                        return $res;
                     }
                 } catch (PDOException $e) {
                     echo 'Error! Getting Data From <b>`'.$tbl_name.'`</b> '.$e->getMessage().'<br>';
