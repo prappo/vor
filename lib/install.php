@@ -8,7 +8,6 @@ header('Location:../login.php');
 }
 else
 {
-	include 'function.php'
 ?>
 
 <!DOCTYPE html>

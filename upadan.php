@@ -1,6 +1,4 @@
 <?php
-include('lib/function.php');
-
 $hook_dir = "plugins/";
 
 
