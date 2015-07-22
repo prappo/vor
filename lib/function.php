@@ -514,3 +514,16 @@ function db_delete($tbl_name, $where) {
         }
     }
 }
+
+function get_plugin_dir() {
+    $backtrace = debug_backtrace();
+
+    foreach($backtrace as $trace) {
+        if($trace['function'] == 'get_plugin_dir') {
+            $filePath = $trace['file'];
+            preg_match("/.*?plugins.(.*?)\\\\|\\//", $filePath, $matches);
+
+            return 'plugins/'.$matches[1];
+        }
+    }
+}
