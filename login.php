@@ -1,5 +1,7 @@
 <?php
     session_start();
+    $_SESSION['csrf_token'] = md5(uniqid(rand(), true));
+
     if(isset($_SESSION["username"])){
         header('Location: index.php');
     }
@@ -55,6 +57,7 @@
                                         <input id="password" class="form-control black" placeholder="Password" type="password" name="password">
                                     </div>
                                     <div>
+                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                         <input type="submit" name="submit" value="Login" id="login" class="btn btn-lg btn-success btn-block" id="submit">
                                     </div>
                                 </fieldset>
@@ -62,8 +65,9 @@
                         </div>
                     </div>
                     <div id="alert">
-                        <div data-msg="success" class="alert alert-success login-message    " style="display:none"><i class="close" data-dismiss="alert">&times;</i>Login successful. Redirecting…</div>
+                        <div data-msg="success" class="alert alert-success login-message" style="display:none"><i class="close" data-dismiss="alert">&times;</i>Login successful. Redirecting…</div>
                         <div data-msg="error" class="alert alert-danger login-message" style="display:none"><i class="close" data-dismiss="alert">&times;</i>Your username or password is incorrect</div>
+                        <div data-msg="csrfAttack" class="alert alert-danger login-message" style="display:none"><i class="close" data-dismiss="alert">&times;</i>CSRF attack detected!</div>
                         <div data-msg="empty" class="alert alert-warning login-message" style="display:none"><i class="close" data-dismiss="alert" id="emptyMsg">&times;</i>You must enter username and password</div>
                     </div>
                 </div>

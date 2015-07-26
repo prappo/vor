@@ -4,12 +4,15 @@ $(function() {
     var btn = form.find('input[type=submit]');
     var succDiv = alertDiv.find('div[data-msg=success]');
     var errDiv = alertDiv.find('div[data-msg=error]');
+    var csrfAttack = alertDiv.find('div[data-msg=csrfAttack]');
     var emptyDiv = alertDiv.find('div[data-msg=empty]');
 
     form.on('submit', function(e) {
         e.preventDefault();
+        
         succDiv.hide();
         errDiv.hide();
+        csrfAttack.hide();
         emptyDiv.hide();
         btn.button('loading');
 
@@ -32,6 +35,10 @@ $(function() {
                 } else if (data.message == 0) {
                     btn.button('reset');
                     errDiv.fadeToggle();
+                    $('#box').shake();
+                } else if(data.message == 'csrf') {
+                    btn.button('reset');
+                    csrfAttack.fadeToggle();
                     $('#box').shake();
                 }
             }, 'json');
