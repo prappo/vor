@@ -516,30 +516,19 @@ function db_delete($tbl_name, $where) {
     }
 }
 
-function get_plugin_dir() {
-    $backtrace = debug_backtrace();
+function get_plugin_name() {
+    $backtrace = array_shift(debug_backtrace());
 
-    foreach($backtrace as $trace) {
-        if($trace['function'] == 'get_plugin_dir') {
-            $filePath = $trace['file'];
-            preg_match("/.*?plugins.(.*?)\\\\|\\//", $filePath, $matches);
+    preg_match("/.*?plugins.*?.(.*_vor)/", dirname($backtrace['file']), $matches);
 
-            return 'plugins/'.$matches[1];
-        }
-    }
+    return $matches[1];
 }
 
-function get_plugin_name() {
-    $backtrace = debug_backtrace();
+function get_plugin_dir() {
+    $backtrace = array_shift(debug_backtrace());
+    preg_match("/.*?plugins.*?.(.*_vor)/", dirname($backtrace['file']), $matches);
 
-    foreach($backtrace as $trace) {
-        if($trace['function'] == 'get_plugin_name') {
-            $filePath = $trace['file'];
-            preg_match("/.*?plugins.(.*?)\\\\|\\//", $filePath, $matches);
-
-            return $matches[1];
-        }
-    }
+    return 'plugins/'.$matches[1];
 }
 
 function add_css($css_files) {
