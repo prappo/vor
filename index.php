@@ -1,8 +1,9 @@
 
 <?php
+session_start();
+
 include('lib/auto_load.php');
 include('lib/function.php');
-session_start();
 
 
 //error_reporting(0);
