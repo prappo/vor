@@ -629,3 +629,38 @@ function IMPORT_DB($host,$user,$pass,$dbname,$sql_file)
     echo 'Importing finished. ';
 }
 
+function save_user_image($file, $config = FALSE) {
+    if(is_uploaded_file($file['tmp_name'])) {
+        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+        $image_name = $file['name'];
+        $tmp_name   = $file['tmp_name'];
+        $ext = pathinfo($image_name)['extension'];
+        
+        $mime = getimagesize($tmp_name);
+        $path = 'img/user/';
+
+        if(isset($config['name'])) {
+            $image = $path.$config['name'].'.'.$ext;
+        } else {
+            $image = $path.$image_name;
+        }
+
+        if(in_array($ext, $allowed)) {
+            if(in_array('image', explode('/', $mime['mime']))) {
+                move_uploaded_file($tmp_name, $image);
+
+                if(isset($config['width']) && isset($config['height'])) {
+                    $resize = new imageResize($image);
+                    $resize->resize($config['width'], $config['height']);
+                    $resize->save();
+                }
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    return false;
+}
