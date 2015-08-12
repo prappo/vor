@@ -410,16 +410,7 @@ echo " <li>
 $content = "";
 require_once("upadan.php");
 
-
-$user = $_SESSION['username'];
-
-mysql_connect(HOST, USER, PASS) or die ("can't connect <br>");
-mysql_select_db(DB) or die ("Can't counnect to database<br>");
-$sql = "SELECT * FROM vor_admin WHERE username = '$user'";
-$query = mysql_query($sql);
-$row = mysql_fetch_array($query);
-$type =  $row['type'];
-
+$type = user_type();
 if($type == 'admin')
 {
 

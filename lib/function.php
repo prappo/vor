@@ -5,15 +5,8 @@ if(file_exists('lib/config.php')) {
 $pdo;
 $js_footer_files;
 
-function settings($val)
-{
-    mysql_connect(HOST, USER, PASS) or die ("can't connect <br>");
-    mysql_select_db(DB) or die ("Can't counnect to database<br>");
-    
-    $sql = "SELECT * FROM vor_settings";
-    $query = mysql_query($sql);
-    $row = mysql_fetch_array($query);
-    return $row[$val];
+function settings($val) {
+    return end((db_get('vor_settings')))[$val];
 }
 
 function settings_update($col, $val)

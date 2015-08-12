@@ -18,12 +18,7 @@ if(!isset($_SESSION["username"])) {
 		<title>
 		<?php
 			function head_settings($val) {
-				mysql_connect(HOST, USER, PASS) or die (mysql_error());
-				mysql_select_db(DB) or die (mysql_error());
-				$sql = "SELECT * FROM vor_settings";
-				$query = mysql_query($sql);
-				$row = mysql_fetch_array($query);
-				return $row[$val];
+				return end((db_get('vor_settings')))[$val];
 			}
 			echo strip_tags(head_settings('header'));
 		?>
