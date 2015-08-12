@@ -517,7 +517,7 @@ function get_plugin_name() {
 }
 
 function get_plugin_dir() {
-    $backtrace = array_shift(debug_backtrace());
+    $backtrace = array_shift((debug_backtrace()));
     preg_match("/.*?plugins.*?.(.*_vor)/", dirname($backtrace['file']), $matches);
 
     return 'plugins/'.$matches[1];
