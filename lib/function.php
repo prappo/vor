@@ -656,3 +656,10 @@ function save_user_image($file, $config = FALSE) {
 
     return false;
 }
+
+function set_value($name = NULL) {
+    if(isset($_REQUEST[$name])) {
+        return $_REQUEST[$name];
+    }
+    return FALSE;
+}
