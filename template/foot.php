@@ -18,13 +18,11 @@
   <script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
   <script type="text/javascript" src="js/respond.min.js" ></script>
   <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
-  <?php
-    set_js_footer();
-  ?>
   <!--common script for all pages-->
   <script src="js/common-scripts.js"></script>
   <script src="js/jquery.stepy.js"></script>
   <script src="js/tasks.js" type="text/javascript"></script>
+  <?php set_js_footer();?>
    
   <!--script for this page only-->
   <script>
