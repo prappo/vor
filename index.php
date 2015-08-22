@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -12,7 +11,7 @@ function customError($errno, $errstr) {
 	if (strpos($errstr,'index') !== false) {
     echo "<script>window.top.location='404'</script>";
     }
- 
+
 }
 
 
