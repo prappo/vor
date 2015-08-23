@@ -33,10 +33,10 @@
 <?php
 	$rows = end((db_get_where('vor_admin', array('username' => $_SESSION['username']))));
 	$image = $rows['image'];
-	$image = 'img/admin/'.$image;
+	$image = 'img/user/'.$image;
 
 	if(!file_exists($image) || empty($rows['image'])) {
-	  $image = 'img/admin/admin.png';
+	  $image = 'img/user/admin_1.png';
 	}
 
 	if(isset($_POST['changePassword'])) {
