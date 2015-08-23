@@ -27,11 +27,11 @@
   $rows = end((db_get_where('vor_admin', array('username' => $_SESSION['username']))));
   $image = $rows['image'];
 
-  $image    = 'img/admin/'.$image;
-  $real_img = 'img/admin/'.$rows['image'];
+  $image    = 'img/user/'.$image;
+  $real_img = 'img/user/'.$rows['image'];
 
   if(!file_exists($image) || empty($rows['image'])) {
-    $image = 'img/admin/admin.png';
+    $image = 'img/user/admin_1.png';
   }
 
   if(isset($_POST['updateProfile'])) {
