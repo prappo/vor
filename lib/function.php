@@ -615,6 +615,8 @@ function IMPORT_DB($host,$user,$pass,$dbname,$sql_file)
 }
 
 function save_user_image($file, $config = FALSE) {
+    require_once 'lib/imageResize.php';
+    
     if(is_uploaded_file($file['tmp_name'])) {
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
         $image_name = $file['name'];
