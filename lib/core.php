@@ -423,7 +423,7 @@ echo " <li>
 
 $content = "";
 require_once("upadan.php");
-add_menu('vor_browsr', 'Browser', 'folder');
+add_menu('vor_browsr', 'File Browser', 'folder');
 
 $type = user_type();
 if($type == 'admin')
