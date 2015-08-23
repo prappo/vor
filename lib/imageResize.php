@@ -1,5 +1,3 @@
-<?php debug_backtrace() || die ("Direct access not permitted."); ?>
-
 <?php
 /**
  * PHP Image
@@ -10,7 +8,6 @@
  * @package     Default
  * @author      Dragos Badea    <bedeabza@gmail.com>
  */
-
 
 class imageResize
 {

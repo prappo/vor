@@ -1,5 +1,5 @@
 <?php
-  $rows = end(db_get_where('vor_admin', array('username' => $_SESSION['username'])));
+  $rows = end((db_get_where('vor_admin', array('username' => $_SESSION['username']))));
   $image = $rows['image'];
   $image = 'img/user/'.$image;
 
