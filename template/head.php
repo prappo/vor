@@ -74,7 +74,7 @@ if(!isset($_SESSION["username"])) {
 									$sql = mysql_query("SELECT * FROM vor_admin WHERE `username` = '{$username}'");
 									$result = mysql_fetch_assoc($sql);
 									
-									$default_img = 'img/user/default_image.png';
+									$default_img = 'img/user/admin_1.png';
 									$user_image  = (empty($result['image'])) ? $default_img : 'img/user/'.$result['image']; ;
 								?>
 								<img alt="" src="<?php if(file_exists($user_image)) { echo $user_image; } else { echo $default_img; } ?>" height="29" width="29">
