@@ -27,6 +27,14 @@ $page->a('/', function(){
     include('home.php');
 });
 
+$page->a('/backup', function(){
+if(user_type()=='admin'){
+  include('backup.php');
+}
+else{
+  echo "forbidden";
+}
+});
 
 $page->a('/logout', function(){
 session_destroy();
@@ -374,7 +382,13 @@ if($type == 'admin')
 	{include('plugins.php');}
 else { echo "forbidden";}
 });
+//browser
+$page->a('/vor_browsr', function(){
+?>
+<iframe src="filebrowser/find.php" width="1000" height="430">Error ! , VOR could not open file browser</iframe>
 
+<?php
+});
 //about page
 
 $page->a('/about', function(){
@@ -409,6 +423,7 @@ echo " <li>
 
 $content = "";
 require_once("upadan.php");
+add_menu('vor_browsr', 'Browser', 'folder');
 
 $type = user_type();
 if($type == 'admin')
@@ -425,6 +440,7 @@ menu_end();
 menu_start('','Settings','cogs');
 add_menu('profile','Profile', 'user');
 add_menu('soft_settings', 'Software', 'rocket');
+add_menu('backup', 'Backup', 'cloud-download');
 menu_end();
 
 add_menu('about', 'About', 'circle');
