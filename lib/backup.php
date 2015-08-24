@@ -28,14 +28,21 @@
       
       $("#btn-import").click(function(){
          
-         $("#import").html(" <div align='center'><input type='file' name='zip_file'> </div><br><div align='center'><input type='submit' name='submit' class='btn btn-outline btn-success' value='Go'></div>");
+         $("#import").html(" <div align='center'><input type='file' name='zip_file'> </div><br><div align='center'><input type='button'  id='btn-import-submit' class='btn btn-outline btn-success' value='Go'></div>");
       
           $("#import").show(200); 
+          alert("Importing Database is not available right now , please wait for next version of VOR or try manually");
       });
       
       $("#btn-export").click(function(){
-          
+         
           $("#preloader").html("<img src='img/Preloader.gif'></img>");
+          $("#preloader").delay(500).show(0);;
+
+          window.location.replace("lib/backup_action.php?action=export");
+          $("#preloader").hide(100);
+
       });
+      
   </script>
   
