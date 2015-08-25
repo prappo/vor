@@ -335,3 +335,5 @@ gen
 lib/config.php
 plugins/*
 img/user/*
+!img/user/admin_1.png
+!img/user/default_image.png
