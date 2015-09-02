@@ -51,17 +51,21 @@ if(isset($_POST['updateProfile'])) {
     if(empty($_POST['name'])) {
         echo '<script>empty();</script>';
     } else {
-        $check = save_user_image($_FILES['image'], [
-            'name'   => $_SESSION['username'],
-            'width'  => 140,
-            'height' => 140
-        ]);
-
         $fields = array(
             'full_name' => $_POST['name'],
             'email'     => $_POST['email']
         );
 
+        if(isset($_FILES['image'])) {
+            $check = save_user_image($_FILES['image'], [
+                'name'   => $_SESSION['username'],
+                'width'  => 140,
+                'height' => 140
+            ]);
+
+            $fields['image'] = $_SESSION['username'].'.'.pathinfo($_FILES['image']['name'])['extension'];
+        }
+        
         $status = db_update('vor_admin', $fields, ['username' => $_SESSION['username']]);
         if($status) {
             echo '<script>success();</script>';
